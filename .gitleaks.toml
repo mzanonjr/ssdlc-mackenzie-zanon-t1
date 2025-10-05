@@ -1,0 +1,87 @@
+# GitLeaks Configuration
+# Detecta secrets, senhas, API keys e outras credenciais hardcoded
+
+title = "GitLeaks SSDLC Configuration"
+
+[extend]
+useDefault = true
+
+# Regras customizadas para o projeto
+[[rules]]
+id = "hardcoded-password"
+description = "Detecta senhas hardcoded"
+regex = '''(?i)(password|passwd|pwd)\s*[=:]\s*["']([^"']{3,})["']'''
+tags = ["password", "security"]
+
+[[rules]]
+id = "java-hardcoded-password"
+description = "Detecta senhas hardcoded em variáveis Java"
+regex = '''(?i)(String|final String|private.*String)\s+(DB_PASSWORD|PASSWORD|PASSWD|DB_PASS)\s*=\s*["']([^"']+)["']'''
+tags = ["password", "java", "security"]
+
+[[rules]]
+id = "java-hardcoded-credentials"
+description = "Detecta credenciais hardcoded em constantes Java"
+regex = '''(?i)(String|final String|private.*String)\s+(DB_USER|DB_USERNAME|USERNAME|USER|API_KEY|TOKEN|SECRET|ADMIN_TOKEN)\s*=\s*["']([^"']+)["']'''
+tags = ["credentials", "java", "security"]
+
+[[rules]]
+id = "api-key"
+description = "Detecta API Keys"
+regex = '''(?i)(api[_-]?key|apikey)\s*[=:]\s*["']([a-zA-Z0-9_-]{10,})["']'''
+tags = ["api-key", "secret"]
+
+[[rules]]
+id = "api-key-value"
+description = "Detecta valores de API Keys"
+regex = '''["'](sk-[a-zA-Z0-9]{16,})["']'''
+tags = ["api-key", "secret"]
+
+[[rules]]
+id = "admin-token"
+description = "Detecta tokens de admin"
+regex = '''(?i)(admin[_-]?token|admintoken)\s*[=:]\s*["']([^"']+)["']'''
+tags = ["token", "admin"]
+
+[[rules]]
+id = "admin-password-simple"
+description = "Detecta senhas admin simples"
+regex = '''["'](admin123|admin@123|root123|password123)["']'''
+tags = ["password", "weak", "admin"]
+
+[[rules]]
+id = "database-password"
+description = "Detecta senhas de banco de dados"
+regex = '''(?i)(db[_-]?password|database[_-]?password)\s*[=:]\s*["']([^"']+)["']'''
+tags = ["database", "password"]
+
+[[rules]]
+id = "spring-datasource-password"
+description = "Detecta senha do Spring datasource"
+regex = '''spring\.datasource\.password\s*[=:]\s*(.+)'''
+tags = ["spring", "database", "password"]
+
+[[rules]]
+id = "password-pattern"
+description = "Detecta padrões de senhas comuns (P@ssw0rd, etc)"
+regex = '''["'](P@ssw[0o]rd[0-9]{1,4}|[Pp]assword[0-9]{1,4}|[Ss]enha[0-9]{1,4})["']'''
+tags = ["password", "weak", "pattern"]
+
+# Allowlist - arquivos/paths que devem ser ignorados
+[allowlist]
+description = "Allowlist para arquivos específicos"
+paths = [
+    '''^\.git/''',
+    '''^node_modules/''',
+    '''^target/''',
+    '''^dist/''',
+]
+
+# Regexes que devem ser ignoradas - REMOVIDO para detectar tudo no projeto educacional
+# regexes = []
+
+# Commits específicos para ignorar (se necessário)
+commits = []
+
+# Stopwords REMOVIDO - queremos detectar todas as credenciais neste projeto educacional
+# stopwords = []

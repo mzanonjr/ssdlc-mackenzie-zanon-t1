@@ -1,0 +1,39 @@
+# OWASP ZAP Rules Configuration
+# Format: RULE_ID	ACTION	COMMENT
+# Actions: IGNORE, WARN, FAIL
+
+# SQL Injection - FAIL (Crítico)
+40018	FAIL	SQL Injection detected
+
+# Cross-Site Scripting (XSS) - FAIL (Crítico)
+40012	FAIL	XSS (Reflected) detected
+40014	FAIL	XSS (Persistent) detected
+40016	FAIL	XSS (DOM) detected
+
+# CORS Misconfiguration - WARN (Alta)
+40040	WARN	CORS misconfiguration
+
+# Missing Security Headers - WARN
+10020	WARN	Missing X-Frame-Options header
+10021	WARN	Missing X-Content-Type-Options header
+10038	WARN	Missing Content-Security-Policy header
+
+# Exposed Credentials - FAIL (Crítico)
+10094	FAIL	Base64 disclosure
+10095	FAIL	Backup file disclosure
+
+# Information Disclosure - WARN
+10096	WARN	Timestamp disclosure
+10097	WARN	Hash disclosure
+
+# Authentication - FAIL (Crítico)
+10055	FAIL	CSP: Wildcard Directive
+10098	FAIL	Cross-Domain Misconfiguration
+
+# Insecure Communication - WARN
+10047	WARN	HTTPS Content Available via HTTP
+
+# Server Misconfiguration - WARN
+10049	WARN	Storable and Cacheable Content
+10050	WARN	Retrieved from Cache
+

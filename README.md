@@ -160,7 +160,7 @@ Este projeto é para fins educacionais apenas. Use por sua conta e risco.
 
 ## 🙋 Suporte
 
-Durante a oficina, não hesite em pedir ajuda ao instrutor!
+Durante a oficina, não hesite em pedir ajuda aos instrutores!
 
 ---
 
