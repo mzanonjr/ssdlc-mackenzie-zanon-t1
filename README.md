@@ -72,7 +72,6 @@ Detecta credenciais e secrets hardcoded no código.
 
 Identifica vulnerabilidades conhecidas em bibliotecas Java.
 
-
 ### 3. Frontend - Análise de Dependências (npm audit)
 
 Verifica vulnerabilidades em pacotes Node.js.
@@ -80,7 +79,6 @@ Verifica vulnerabilidades em pacotes Node.js.
 ### 4. Backend/Frontend - Análise Estática de Código (CodeQL)
 
 Detecta bugs e vulnerabilidades no código Java.
-
 
 ### 5. DAST - Análise de Dinamica de Código (OWASP Zap)
 
